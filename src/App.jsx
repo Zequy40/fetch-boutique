@@ -1,40 +1,36 @@
 import React, { Component } from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import './App.css'
-import axios from 'axios';
 
+function App() {
+  const[characters, setCharacters] = useState([])
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch('https://rickandmortyapi.com/api/character');
+      const data = await response.json();
+      setCharacters(data.results);
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: []
-    };
-  }
+    }
+    fetchData()
+  }, []);
 
-  componentDidMount() {
-    axios.get('https://rickandmortyapi.com/api/character')
-      .then(res => {
-        this.setState({ data: res.data.results });
-      });
-  }
-
-  render() {
     return (
       <ContainerAll>
         <h1>
         Boutique en ligne
         </h1>
-        {Array.isArray(this.state.data) && this.state.data.map(item => (
-            <div key={item.results.id}>
-            <img src={item.results.image} alt="" />
-            <h2>{item.results.name}</h2>
-            <p>{item.results.origin.name}</p>
+        {characters.map(item => (
+            <div key={item.id}>
+            <img src={item.image} alt="" />
+            <h2>{item.name}</h2>
+            <p>{item.origin.name}</p>
           </div> ))}
       </ContainerAll>
     )
   }
-}
+
 
 const ContainerAll = styled.section`
   width:100%;
