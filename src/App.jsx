@@ -15,7 +15,7 @@ class App extends React.Component {
   componentDidMount() {
     axios.get('https://rickandmortyapi.com/api/character')
       .then(res => {
-        this.setState({ data: res.data });
+        this.setState({ data: res.data.results });
       });
   }
 
@@ -25,7 +25,7 @@ class App extends React.Component {
         <h1>
         Boutique en ligne
         </h1>
-        {this.state.data.map(item => (
+        {Array.isArray(this.state.data) && this.state.data.map(item => (
             <div key={item.results.id}>
             <img src={item.results.image} alt="" />
             <h2>{item.results.name}</h2>
