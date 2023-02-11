@@ -13,7 +13,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('https://fakestoreapi.com/products')
+    axios.get('https://rickandmortyapi.com/api/character')
       .then(res => {
         this.setState({ data: res.data });
       });
@@ -26,10 +26,10 @@ class App extends React.Component {
         Boutique en ligne
         </h1>
         {this.state.data.map(item => (
-            <div key={item.id}>
-            <img src={item.image} alt="" />
-            <h2>{item.title}</h2>
-            <p>{item.description}</p>
+            <div key={item.result.id}>
+            <img src={item.result.image} alt="" />
+            <h2>{item.result.name}</h2>
+            <p>{item.result.origin.name}</p>
           </div> ))}
       </ContainerAll>
     )
