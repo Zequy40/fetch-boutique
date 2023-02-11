@@ -21,12 +21,14 @@ function App() {
         <h1>
         Boutique en ligne
         </h1>
+        <Cards>
         {characters.map(item => (
             <div key={item.id}>
             <img src={item.image} alt="" />
             <h2>{item.name}</h2>
             <p>{item.origin.name}</p>
           </div> ))}
+          </Cards>
       </ContainerAll>
     )
   }
@@ -62,5 +64,13 @@ const ContainerAll = styled.section`
       font-size: 18px;
     }
   }
+  `;
+  const Cards = styled.div`
+    display: grid;
+    gap: 1rem;
+    grid-auto-flow: dense;
+    grid-auto-rows: auto;
+    grid-template-columns: repeat(auto-fill, minmax(19rem, 1fr));
+    align-items: center;
   `;
 export default App
