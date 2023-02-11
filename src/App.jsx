@@ -26,10 +26,10 @@ class App extends React.Component {
         Boutique en ligne
         </h1>
         {this.state.data.map(item => (
-            <div key={item.result.id}>
-            <img src={item.result.image} alt="" />
-            <h2>{item.result.name}</h2>
-            <p>{item.result.origin.name}</p>
+            <div key={item.results.id}>
+            <img src={item.results.image} alt="" />
+            <h2>{item.results.name}</h2>
+            <p>{item.results.origin.name}</p>
           </div> ))}
       </ContainerAll>
     )
