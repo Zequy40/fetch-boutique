@@ -13,7 +13,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('https://cors-anywhere.herokuapp.com/https://fakestoreapi.com/products')
+    axios.get('https://fakestoreapi.com/products')
       .then(res => {
         this.setState({ data: res.data });
       });
