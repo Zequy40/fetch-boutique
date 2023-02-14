@@ -31,7 +31,7 @@ function App() {
     return (
       <ContainerAll>
         <h1>
-        Fetch Boutique
+        Fetch Boutiques
         </h1>
         {/* <NavBar page={page} setPage={setPage}/> */}
         <Cards>
