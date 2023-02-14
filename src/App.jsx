@@ -5,14 +5,14 @@ import styled, { createGlobalStyle } from 'styled-components';
 import './App.css'
 
 
-function NavBar(props){
-return (
-  <Header>
-    <button onClick={() => props.setPage(props.page + 1)}>Suivant</button>
-    <button className='retour' onClick={() => props.setPage(props.page - 1)}>Retour</button>
-  </Header>
-)
-}
+// function NavBar(props){
+// return (
+//   <Header>
+//     <button onClick={() => props.setPage(props.page + 1)}>Suivant</button>
+//     <button className='retour' onClick={() => props.setPage(props.page - 1)}>Retour</button>
+//   </Header>
+// )
+// }
 
 
 function App() {
@@ -20,9 +20,9 @@ function App() {
   const [page, setPage] = useState(1)
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch(`https://rickandmortyapi.com/api/character?page=${page}`);
+      const response = await fetch(`https://api.escuelajs.co/api/v1/products`);
       const data = await response.json();
-      setCharacters(data.results);
+      setCharacters(data);
 
     }
     fetchData()
@@ -31,17 +31,18 @@ function App() {
     return (
       <ContainerAll>
         <h1>
-        Personnage Rick and Morty
+        Fetch Boutique
         </h1>
-        <NavBar page={page} setPage={setPage}/>
+        {/* <NavBar page={page} setPage={setPage}/> */}
         <Cards>
         
         {characters.map(item => (
           <div className='contain'>
             <div key={item.id}>
-            <img src={item.image} alt="" />
-            <h2>{item.name}</h2>
-            <p>{item.origin.name}</p>
+            <img src={item.images} alt="" />
+            <h2>{item.title}</h2>
+            <p>{item.description}</p>
+            <p className='price'>{item.price}€</p>
           </div></div> ))}
           
           </Cards>
@@ -94,7 +95,14 @@ margin: 20px;
       font-size: 25px;
     }
     p{
-      font-size: 18px;
+      font-size: 12px;
+      color:#777;
+      padding: 0 10px;
+    }
+    .price{
+      color:cyan;
+      font-size: 25px;
+      font-weight: bold;
     }
   }
   `;
